@@ -3,3 +3,10 @@
 
 board/av-backups
 board/fp-info-cache
+
+avmgr/db/
+avmgr/incremental_db/
+avmgr/output_files/
+avmgr/simulation/
+avmgr/avmgr.qws
+avmgr/avmgr_assignment_defaults.qdf
