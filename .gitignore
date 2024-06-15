@@ -19,5 +19,6 @@ flex/*.pin
 flex/*.rbf
 flex/*.sof
 flex/*.summary
+flex/*.qws
 flex/simulation
 
