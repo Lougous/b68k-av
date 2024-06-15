@@ -4,9 +4,20 @@
 board/av-backups
 board/fp-info-cache
 
-avmgr/db/
-avmgr/incremental_db/
+avmgr/db
+avmgr/incremental_db
 avmgr/output_files/
 avmgr/simulation/
 avmgr/avmgr.qws
 avmgr/avmgr_assignment_defaults.qdf
+
+flex/db
+flex/incremental_db
+flex/*.rpt
+flex/*.done
+flex/*.pin
+flex/*.rbf
+flex/*.sof
+flex/*.summary
+flex/simulation
+
