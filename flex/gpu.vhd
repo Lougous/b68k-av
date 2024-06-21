@@ -110,16 +110,20 @@ architecture rtl of gpu is
   signal to_go_y  : std_logic_vector(3 downto 0);
 
   signal RDT_swp : std_logic_vector(15 downto 0);
+
+  signal clk_inv : std_logic;
   
 begin
 
   RDT_swp <= RDT(7 downto 0) & RDT(15 downto 8);
   
   sc_wd <= mdata(7 downto 0);
+
+  clk_inv <= not CLK25;
   
   scratch_i : entity work.scratch
     port map (
-      inclock => CLK25,
+      inclock => clk_inv,
       address => sc_ad,
       data    => sc_wd,
       we      => sc_we,
