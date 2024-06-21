@@ -46,7 +46,7 @@ architecture rtl of apu is
   signal opl2_dat         : std_logic_vector(15 downto 0);
   signal opl2_top_50khz   : std_logic;
 
-  signal opl2_latch : std_logic_vector(15 downto 0);
+  signal opl2_latch : std_logic_vector(15 downto 0) := (others => '0');
   
   signal pwm_hi : std_logic_vector(5 downto 0) := (others => '0');
   signal pwm_lo : std_logic_vector(5 downto 0) := (others => '0');
