@@ -30,7 +30,8 @@ GPU commands also able:
 
 
 | 15 | 14 | 13 | 12 | 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2 |  1 |  0 |
-|  0 |                               ADDR(14:0)                                 |||||||||||||||
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+|  0 |                               ADDR(14:0)                   |||||||||||||||
 |  1 |  0 |  - |    ADDR(18:15) ||||  S |    HEIGHT(3:0) ||||  F | LR | LP | WS |
 |  1 |  1 |  - |    WIDTH(3:0)  |||| RW | KY | -  | BK(3:0)||      LUT(3:0)  ||||
 [command word format]
@@ -75,20 +76,24 @@ The readback supports 2 modes:
   * if pixel MSB (bit 7) is set to zero, no change with low resolution mode (except that color index restrict to range 0..127)
   * if pixel MSB (bit 7) is set to one, the pixel is to be considered as a 2x2 pixel tile, thus possibly achieving an actual resolution of 640x480 pixels. Bits 3..0 provide a value for each pixel in the tile; bits 6..4 is used to form the 8-bits color index as detailed hereafter, together with pixel odd/even position over X and Y axis, as well as an additional LP bit (see GPU)
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0* |
-| 1 | LP | bits 6..4 ||| 0 | 0 | bit 0 |
+| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
+|-----|-----|-----|-----|-----|-----|-----|-------|
+| 1   | LP  | bits 6..4     ||| 0   | 0   | bit 0 |
 [high resolution pixel expansion, upper-left pixel]
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0* |
-| 1 | LP | bits 6..4 ||| 0 | 1 | bit 1 |
+| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
+|-----|-----|-----|-----|-----|-----|-----|-------|
+| 1   | LP  | bits 6..4     ||| 0   | 1   | bit 1 |
 [high resolution pixel expansion, upper-right pixel]
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0* |
-| 1 | LP | bits 6..4 ||| 1 | 0 | bit 2 |
+| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
+|-----|-----|-----|-----|-----|-----|-----|-------|
+| 1   | LP  | bits 6..4     ||| 1   | 0   | bit 2 |
 [high resolution pixel expansion, lower-left pixel]
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0* |
-| 1 | LP | bits 6..4 ||| 1 | 1 | bit 3 |
+| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
+|-----|-----|-----|-----|-----|-----|-----|-------|
+| 1   | LP  | bits 6..4     ||| 1   | 3   | bit 3 |
 [high resolution pixel expansion, lower-right pixel]
 
 # Memory mapping
@@ -141,9 +146,9 @@ Provide access to the RAMDAC registers (Bt476 / IMS G176 or compatible). Address
 ## flex registers
 
 | address offset    | mode   | name   | description |
-|:-----------------:|:------:|:------:|:-----
+|:-----------------:|:------:|:------:|:-----:|
 | any               | read   | status | bit 0: interrupt enable (active high)<br>bit 1: pending interrupt (active high)<br>bits 6..4: SRAM bank (8 banks x 64kiB = 512kiB)<br>7: GPU busy (active high) |
-|:-----------------:|:------:|:------:|:-----
+|:-----------------:|:------:|:------:|:-----:|
 | 00000h            | write  | itcgf  | bit 0: interrupt enable (active high)<br>bit 1: pending interrupt acknowlege (when written as 1) |
 | 00001h            | write  | bank  | bits 6..4: SRAM access bank (8 banks x 64kiB = 512kiB) |
 | 00002h            | write  | -     | spare |
