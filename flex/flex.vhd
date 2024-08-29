@@ -255,7 +255,7 @@ begin  -- architecture rtl
   c_ad <= reg_c_ad & l_ad(15 downto 1) & l_ad(0);
 
   -- data read
-  LD_out <= g_busy & a_hfull & reg_c_ad & "0" & reg_int_fl & reg_int_en;
+  LD_out <= g_busy & reg_c_ad & a_hfull & "0" & reg_int_fl & reg_int_en;
 
   
   LAD <= LD_out when LREn = '0' else (others => 'Z');
