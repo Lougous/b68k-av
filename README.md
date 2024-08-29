@@ -43,7 +43,7 @@ GPU commands also able:
       <td>1</td><td>0</td><td>-</td><td colspan=4>ADDR(18:15)</td><td>S</td><td colspan=4>HEIGHT(3:0)</td><td>F</td><td>LR</td><td>LP</td><td>WS</td>
     </tr>
     <tr>
-      <td>1</td><td>1</td><td>-</td><td colspan=4>WIDTH(3:0)</td><td>RW</td><td>KY</td><td colspan=2>BK(1:0)</td><td colspan=4>LUT(3:0)</td>
+      <td>1</td><td>1</td><td>-</td><td colspan=4>WIDTH(3:0)</td><td>RW</td><td>KY</td><td>-</td><td colspan=2>BK(1:0)</td><td colspan=4>LUT(3:0)</td>
     </tr>
   </tbody>
 </table>
@@ -88,25 +88,61 @@ The readback supports 2 modes:
   * if pixel MSB (bit 7) is set to zero, no change with low resolution mode (except that color index restrict to range 0..127)
   * if pixel MSB (bit 7) is set to one, the pixel is to be considered as a 2x2 pixel tile, thus possibly achieving an actual resolution of 640x480 pixels. Bits 3..0 provide a value for each pixel in the tile; bits 6..4 is used to form the 8-bits color index as detailed hereafter, together with pixel odd/even position over X and Y axis, as well as an additional LP bit (see GPU)
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
-|-----|-----|-----|-----|-----|-----|-----|-------|
-| 1   | LP  | bits 6..4     ||| 0   | 0   | bit 0 |
-[high resolution pixel expansion, upper-left pixel]
+high resolution pixel expansion, upper-left pixel:
+<table>
+  <thead>
+    <tr>
+      <th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td><td>LP</td><td colspan=3>bits 6..4</td><td>0</td><td>0</td><td>bit 0</td>
+    </tr>
+  </tbody>
+</table>
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
-|-----|-----|-----|-----|-----|-----|-----|-------|
-| 1   | LP  | bits 6..4     ||| 0   | 1   | bit 1 |
-[high resolution pixel expansion, upper-right pixel]
+high resolution pixel expansion, upper-right pixel:
+<table>
+  <thead>
+    <tr>
+      <th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td><td>LP</td><td colspan=3>bits 6..4</td><td>0</td><td>1</td><td>bit 1</td>
+    </tr>
+  </tbody>
+</table>
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
-|-----|-----|-----|-----|-----|-----|-----|-------|
-| 1   | LP  | bits 6..4     ||| 1   | 0   | bit 2 |
-[high resolution pixel expansion, lower-left pixel]
+high resolution pixel expansion, lower-left pixel:
+<table>
+  <thead>
+    <tr>
+      <th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td><td>LP</td><td colspan=3>bits 6..4</td><td>1</td><td>0</td><td>bit 2</td>
+    </tr>
+  </tbody>
+</table>
 
-| *7* | *6* | *5* | *4* | *3* | *2* | *1* | *0*   |
-|-----|-----|-----|-----|-----|-----|-----|-------|
-| 1   | LP  | bits 6..4     ||| 1   | 3   | bit 3 |
-[high resolution pixel expansion, lower-right pixel]
+high resolution pixel expansion, lower-right pixel:
+<table>
+  <thead>
+    <tr>
+      <th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td><td>LP</td><td colspan=3>bits 6..4</td><td>1</td><td>1</td><td>bit 3</td>
+    </tr>
+  </tbody>
+</table>
 
 # Memory mapping
 
@@ -157,9 +193,12 @@ Provide access to the RAMDAC registers (Bt476 / IMS G176 or compatible). Address
 
 ## flex registers
 
+
 | address offset    | mode   | name   | description |
 |:-----------------:|:------:|:------:|:-----:|
 | any               | read   | status | bit 0: interrupt enable (active high)<br>bit 1: pending interrupt (active high)<br>bits 6..4: SRAM bank (8 banks x 64kiB = 512kiB)<br>7: GPU busy (active high) |
+
+| address offset    | mode   | name   | description |
 |:-----------------:|:------:|:------:|:-----:|
 | 00000h            | write  | itcgf  | bit 0: interrupt enable (active high)<br>bit 1: pending interrupt acknowlege (when written as 1) |
 | 00001h            | write  | bank  | bits 6..4: SRAM access bank (8 banks x 64kiB = 512kiB) |
