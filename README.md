@@ -29,12 +29,11 @@ GPU commands also able:
 * to synchronize a command to the vertical refresh
 
 
-| 15 | 14 | 13 | 12 | 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2 |  1 |  0 |
-|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-|  0 |                               ADDR(14:0)                   |||||||||||||||
-|  1 |  0 |  - |    ADDR(18:15) ||||  S |    HEIGHT(3:0) ||||  F | LR | LP | WS |
-|  1 |  1 |  - |    WIDTH(3:0)  |||| RW | KY | -  | BK(3:0)||      LUT(3:0)  ||||
-[command word format]
+| 15 | 14 | 13 | 12 | 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2 |  1 |  0
+| -
+|  0 <td colspan=15>ADDR(14:0)
+|  1 |  0 |  - <td colspan=4> ADDR(18:15) |  S <td colspan=4>    HEIGHT(3:0) |  F | LR | LP | WS
+|  1 |  1 |  - <td colspan=4> WIDTH(3:0)  | RW | KY | - <td colspan=2> BK(1:0) <td colspan=4> LUT(3:0)
 
 * ADDR:   SRAM address to read/write, or to set as frame buffer start address
 * S:      stop display list execution when set
