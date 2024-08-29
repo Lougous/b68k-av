@@ -28,12 +28,21 @@ GPU commands also able:
 * to change the frame buffer format used by the video readback
 * to synchronize a command to the vertical refresh
 
-
-| 15 | 14 | 13 | 12 | 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2 |  1 |  0
-| -
-|  0 <td colspan=15>ADDR(14:0)
-|  1 |  0 |  - <td colspan=4> ADDR(18:15) |  S <td colspan=4>    HEIGHT(3:0) |  F | LR | LP | WS
-|  1 |  1 |  - <td colspan=4> WIDTH(3:0)  | RW | KY | - <td colspan=2> BK(1:0) <td colspan=4> LUT(3:0)
+<table>
+  <thead>
+    <tr>
+      <th>15</th><th>14</th><th>13</th><th>12</th><th>11</th><th>10</th><th>9</th><th>8</th>
+      <th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td><td colspan=15>ADDR(14:0)</td>
+      <td>1</td><td>0</td><td>-</td><td colspan=4>ADDR(18:15)</td><td>S</td><td colspan=4>HEIGHT(3:0)</td><td>F</td><td>LR</td><td>LP</td><td>WS</td>
+      <td>1</td><td>1</td><td>-</td><td colspan=4>WIDTH(3:0)</td><td>RW</td><td>KY</td><td colspan=2>BK(1:0)</td><td colspan=4>LUT(3:0)</td>
+    </tr>
+  </tbody>
+</table>
 
 * ADDR:   SRAM address to read/write, or to set as frame buffer start address
 * S:      stop display list execution when set
