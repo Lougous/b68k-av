@@ -38,7 +38,11 @@ GPU commands also able:
   <tbody>
     <tr>
       <td>0</td><td colspan=15>ADDR(14:0)</td>
+    </tr>
+    <tr>
       <td>1</td><td>0</td><td>-</td><td colspan=4>ADDR(18:15)</td><td>S</td><td colspan=4>HEIGHT(3:0)</td><td>F</td><td>LR</td><td>LP</td><td>WS</td>
+    </tr>
+    <tr>
       <td>1</td><td>1</td><td>-</td><td colspan=4>WIDTH(3:0)</td><td>RW</td><td>KY</td><td colspan=2>BK(1:0)</td><td colspan=4>LUT(3:0)</td>
     </tr>
   </tbody>
