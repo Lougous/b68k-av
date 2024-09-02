@@ -83,9 +83,9 @@ These two rules ease the implementation of scrolling frame buffer content in bot
 ## pixel format
 
 The readback supports 2 modes:
-* low resolution mode; pixels are replicated so that an actual resolution of 320x240 pixels is used, yet still with a VGA (640x480) video timing. Each pixel is 8-bits.
+* low resolution mode; pixels are replicated so that an actual resolution of 320x240 pixels is used, yet still with a VGA (640x480) video timing. Each pixel is an 8-bits value that is used as an index into the color lookup table managed by the RAMDAC chip.
 * high resolution mode; based on the 320x240x8-bits defined below, each 8-bit pixel is
-  * if pixel MSB (bit 7) is set to zero, no change with low resolution mode (except that color index restrict to range 0..127)
+  * if pixel MSB (bit 7) is set to zero, no change with low resolution mode (except that color index restricts to range 0..127)
   * if pixel MSB (bit 7) is set to one, the pixel is to be considered as a 2x2 pixel tile, thus possibly achieving an actual resolution of 640x480 pixels. Bits 3..0 provide a value for each pixel in the tile; bits 6..4 is used to form the 8-bits color index as detailed hereafter, together with pixel odd/even position over X and Y axis, as well as an additional LP bit (see GPU)
 
 high resolution pixel expansion, upper-left pixel:
