@@ -12,7 +12,9 @@
 --  D0 : LSB
 --  sn : sign
 --
---  data clock is OPL2 clock divided by 4
+--  data clock is OPL2 clock divided by 4. This module works properly is fed
+--  with the same 25MHz clock that is used divided by 7 (25/7 = 3.5715MHz) for
+--  the OPL2 chip
 --
 --  decoding scheme :
 --
@@ -43,7 +45,6 @@ entity opl2_decoder is
   port (
     RSTn  : in  std_logic;
     CLK25 : in  std_logic;
-    CLKEQ : out std_logic;
 
     -- OPL2
     OPL_MO   : in  std_logic;
@@ -72,6 +73,7 @@ architecture rtl of opl2_decoder is
 
 begin
 
+  -- divide clock by 4
   clk_div_p: process (CLK25, RSTn) is
   begin
     if RSTn = '0' then
@@ -90,12 +92,8 @@ begin
       opl_sh_r <= '0';
       opl_top  <= '0';
 
-      CLKEQ <= '0';
-      
     elsif rising_edge(CLK25) then
       -- synchronize with (25/7)/4 clock
-      CLKEQ <= '0';
-      
       opl_top <= '0';
 
       if clkdiv = "00" then
@@ -114,8 +112,6 @@ begin
         if opl_cnt7 = "010" then
           opl_top <= '1';
         end if;
-
-        CLKEQ <= '1';
       end if;
     end if;
   end process opl2_top_p;
