@@ -1,5 +1,5 @@
 The flex FPGA architecture is depicted hereafter:
-![flex FPGA block diagram](/doc/flex.svg)
+![flex FPGA block diagram](/doc/flex.png)
 
 # local bus
 
