@@ -111,8 +111,8 @@ These two rules ease the implementation of scrolling frame buffer content in bot
 |:-----------------:|:------:|:-----:|
 | 00000h  - 1FFFFh  | 128kiB | not usable for readback |
 | 20000h  - 3FFFFh  | 128kiB | page #0 |
-| 00100h  - 0017Fh  | 128kiB | not usable for readback |
-| 00180h  - 001FFh  | 128kiB | page #1 |
+| 40000h  - 5FFFFh  | 128kiB | not usable for readback |
+| 60000h  - 7FFFFh  | 128kiB | page #1 |
 
 ## pixel format
 
