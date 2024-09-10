@@ -8,6 +8,8 @@ This board provides audio and video capabilities to the b68k computer. Main comp
 * video RAMDAC
 * OPL2 audio chip
 
+![b68k-av block diagram](/doc/b68k-av.png)
+
 external interfaces: video (VGA, DIN 15 pins) and audio (3.5mm jack) 
 
 # Memory mapping
@@ -60,3 +62,19 @@ Provide access to the RAMDAC registers (Bt476 / IMS G176 or compatible). Address
 ## flex registers
 
 See [flex FPGA](/doc/flex.md) documentation.
+
+# BOM
+
+| Reference  | Part |
+|:-----------------:|:------:|
+| RN1 | not populated |
+| U1 | 74F245 |
+| U2 | EPM7064SLC44-10 |
+| U3 | MPC6002 |
+| U4 | LM337 |
+| U6 | EPF10K10LC84-4 |
+| U7, U8 | 74F373 |
+| U11 | YM3812 (OPL2) |
+| U12 | KDA0476BCN-66 |
+| D5 | BAT48 (shottky) |
+| X1 or X3 | 25-MHz |
